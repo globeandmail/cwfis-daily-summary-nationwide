@@ -15,11 +15,13 @@ url = (
     f"&date={today}"
 )
 
+def do_string(text):
+    return text.replace("_", " ").capitalize()
+    
 response = requests.get(url, timeout=30)
 response.raise_for_status()
 
 data = response.json()[0]
-
 
 area_data = data["area_burned"]["response_type"]
 count_data = data["fire_count"]["response_type"]
@@ -28,7 +30,7 @@ rows = []
 # full_response statuses
 for status in ["out_of_control", "being_held", "under_control"]:
     rows.append([
-        f"full_response ({status})",
+        f"{do_string(status)}",
         area_data["full_response"]["stage_of_control"][status],
         count_data["full_response"]["stage_of_control"][status],
         generated_utc
@@ -36,7 +38,7 @@ for status in ["out_of_control", "being_held", "under_control"]:
 
 # modified_response
 rows.append([
-    "modified_response",
+    "Modified response",
     area_data["modified_response"]["status"]["active"],
     count_data["modified_response"]["status"]["active"],
     generated_utc
@@ -44,7 +46,7 @@ rows.append([
 
 # monitored_response
 rows.append([
-    "monitored_response",
+    "Monitored response",
     area_data["monitored_response"]["status"]["active"],
     count_data["monitored_response"]["status"]["active"],
     generated_utc
@@ -56,7 +58,7 @@ with open("data.csv", "w", newline="", encoding="utf-8") as f:
     writer.writerow([
         "Status",
         "Hectares burned",
-        "Numbe of fires",
+        "Number of fires",
         "Timestamp (UTC)"
     ])
 
