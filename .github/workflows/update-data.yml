@@ -4,9 +4,9 @@ concurrency:
   group: fire-stats
   cancel-in-progress: false
 on:
+  workflow_dispatch:
   schedule:
     - cron: "*/5 * * * *"
-  workflow_dispatch: null
 jobs:
   update:
     runs-on: ubuntu-latest
