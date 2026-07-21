@@ -1,6 +1,6 @@
-Status,Hectares burned,Numbe of fires,Timestamp (UTC)
-full_response (out_of_control),762693.4,93,2026-07-21T15:11:10Z
-full_response (being_held),27337.9,25,2026-07-21T15:11:10Z
-full_response (under_control),188951.6,69,2026-07-21T15:11:10Z
-modified_response,374455.0,124,2026-07-21T15:11:10Z
-monitored_response,1434358.4,584,2026-07-21T15:11:10Z
+Status,Hectares burned,Number of fires,Timestamp (UTC)
+Out of control,762693.4,93,2026-07-21T15:36:54Z
+Being held,27337.9,25,2026-07-21T15:36:54Z
+Under control,188951.6,69,2026-07-21T15:36:54Z
+Modified response,374455.0,124,2026-07-21T15:36:54Z
+Monitored response,1434358.4,584,2026-07-21T15:36:54Z
