@@ -2,7 +2,8 @@ import requests
 import os
 
 API_TOKEN = os.environ["TOKEN"]
-URL_BASE = os.environ["URL_BASE"]
+# URL_BASE = os.environ["URL_BASE"]
+URL_BASE = "https://api.datawrapper.de/v3/"
 CHART_ID = "AUj6h"
 print(URL_BASE)
 print(CHART_ID)
