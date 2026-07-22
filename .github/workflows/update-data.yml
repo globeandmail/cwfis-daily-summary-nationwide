@@ -25,6 +25,9 @@ jobs:
         run: |
           pip install -r requirements.txt
       - name: Generate CSV
+        env:
+          URL_BASE: ${{secrets.URL_BASE}}
+          TOKEN: ${{ secrets.TOKEN }}
         run: python scrape.py
       - name: Commit Changes
         run: |
