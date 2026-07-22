@@ -88,7 +88,7 @@ with open("data.csv", "w", newline="", encoding="utf-8") as f:
     writer.writerows(rows)
 
 print("data.csv updated")
-
+return
 API_TOKEN = os.environ["TOKEN"]
 URL_BASE = os.environ["URL_BASE"]
 CHART_ID = "AUj6h"
