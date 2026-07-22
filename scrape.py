@@ -46,7 +46,7 @@ rows.append([
     "Status",
     "Hectares burned",
     "Number of fires",
-    "Timestamp (UTC)"
+    "Timestamp (ET)"
 ])
 
 # FULL RESPONSE
@@ -55,7 +55,7 @@ for status in ["out_of_control", "being_held", "under_control"]:
         f"{do_string(status)}",
         count_data["full_response"]["stage_of_control"][status],
         area_data["full_response"]["stage_of_control"][status],
-        generated_utc
+        timestamp
     ])
 
 # MODIFIED AND MONITORED RESPONSE
@@ -64,7 +64,7 @@ for response in ["modified_response", "monitored_response"]:
         f"{do_string(response)}",
         count_data[response]["status"]["active"],
         area_data[response]["status"]["active"],
-        generated_utc
+        timestamp
     ])
 
 # monitored_response
@@ -72,7 +72,7 @@ for response in ["modified_response", "monitored_response"]:
 #     "Monitored response",
 #     count_data["monitored_response"]["status"]["active"],
 #     area_data["monitored_response"]["status"]["active"],
-#     generated_utc
+#     timestamp
 # ])
 
 with open("data.csv", "w", newline="", encoding="utf-8") as f:
@@ -82,7 +82,7 @@ with open("data.csv", "w", newline="", encoding="utf-8") as f:
     #     "Status",
     #     "Hectares burned",
     #     "Number of fires",
-    #     "Timestamp (UTC)"
+    #     "Timestamp (ET)"
     # ])
 
     writer.writerows(rows)
