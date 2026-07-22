@@ -1,6 +1,7 @@
 
 from datetime import date, datetime
 from zoneinfo import ZoneInfo
+from io import StringIO
 import csv
 import requests
 import os
@@ -34,20 +35,17 @@ def do_string(text):
 
 response = requests.get(url, timeout=30)
 response.raise_for_status()
-
 data = response.json()[0]
 area_data = data["area_burned"]["response_type"]
 count_data = data["fire_count"]["response_type"]
 
 # BUILD CSV
-rows = []
-
-rows.append([
+rows = [[
     "Status",
     "Number of fires",
     "Hectares burned",
     "Timestamp (ET)"
-])
+]]
 
 # FULL RESPONSE
 for status in ["out_of_control", "being_held", "under_control"]:
@@ -59,31 +57,33 @@ for status in ["out_of_control", "being_held", "under_control"]:
     ])
 
 # MODIFIED AND MONITORED RESPONSE
-for response in ["modified_response", "monitored_response"]:
+for response_type in ["modified_response", "monitored_response"]:
     rows.append([
-        f"{do_string(response)}",
-        count_data[response]["status"]["active"],
-        area_data[response]["status"]["active"],
+        f"{do_string(response_type)}",
+        count_data[response_type]["status"]["active"],
+        area_data[response_type]["status"]["active"],
         timestamp
     ])
 
-with open("data.csv", "w", newline="", encoding="utf-8") as f:
-    writer = csv.writer(f)
-    writer.writerows(rows)
+# with open("data.csv", "w", newline="", encoding="utf-8") as f:
+#     writer = csv.writer(f)
+#     writer.writerows(rows)
+# print("data.csv updated");
 
-print("data.csv updated");
+# CSV DATA
+csv_buffer = StringIO()
+csv.writer(csv_buffer).writerows(rows)
+csv_data = csv_buffer.getvalue()
 
+# TOTALS
+total_fires = sum(int(row[1]) for row in rows[1:])
+total_hectares = sum(float(row[2]) for row in rows[1:])
+
+# FOR CHART UPDATE
 API_TOKEN = os.environ["TOKEN"]
 URL_BASE = os.environ["URL_BASE"]
 CHART_ID = "AUj6h"
 HEADERS = {"Authorization": f"Bearer {API_TOKEN}"}
-
-# CSV data to upload
-csv_data = """date,value
-2026-07-20,100
-2026-07-21,125
-2026-07-22,150
-"""
 
 # UPDATE DATA
 response = requests.put(
@@ -94,9 +94,14 @@ response = requests.put(
 
 response.raise_for_status()
 
-# PATCH CHART
+# UPDATE TITLE AND TIMESTAMP
 payload = {
-    "title": "COOL CHORT BRO"
+    "title": f"There are currently {total_fires:,} wildfires in Canada that have burned {total_hectares:,.0f} hectares",
+    "metadata": {
+        "describe": {
+            "intro": f"As of {timestamp}.",
+        }
+    }
 }
 
 response = requests.patch(
