@@ -43,8 +43,8 @@ jobs:
           git pull --rebase origin main
 
           git push origin HEAD:main
-      - name: Update chart
-        env:
-          URL_BASE: ${{secrets.URL_BASE}}
-          TOKEN: ${{ secrets.TOKEN }}
-        run: python update_chart.py
+      # - name: Update chart
+      #   env:
+      #     URL_BASE: ${{secrets.URL_BASE}}
+      #     TOKEN: ${{ secrets.TOKEN }}
+      #   run: python update_chart.py
