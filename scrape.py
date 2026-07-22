@@ -42,9 +42,9 @@ count_data = data["fire_count"]["response_type"]
 # BUILD CSV
 rows = [[
     "Status",
-    "Number of fires",
-    "Hectares burned",
-    "Timestamp (ET)"
+    "<b>NUMBER OF FIRES</b>",
+    "<b>HECTARES BURNED</b>",
+    "Timestamp"
 ]]
 
 # FULL RESPONSE
@@ -65,11 +65,6 @@ for response_type in ["modified_response", "monitored_response"]:
         timestamp
     ])
 
-# with open("data.csv", "w", newline="", encoding="utf-8") as f:
-#     writer = csv.writer(f)
-#     writer.writerows(rows)
-# print("data.csv updated");
-
 # CSV DATA
 csv_buffer = StringIO()
 csv.writer(csv_buffer).writerows(rows)
@@ -82,7 +77,7 @@ total_hectares = sum(float(row[2]) for row in rows[1:])
 # FOR CHART UPDATE
 API_TOKEN = os.environ["TOKEN"]
 URL_BASE = os.environ["URL_BASE"]
-CHART_ID = "AUj6h"
+CHART_ID = "s6yBc"
 HEADERS = {"Authorization": f"Bearer {API_TOKEN}"}
 
 # UPDATE DATA
@@ -99,7 +94,7 @@ payload = {
     "title": f"There are currently {total_fires:,} wildfires in Canada that have burned {total_hectares:,.0f} hectares",
     "metadata": {
         "describe": {
-            "intro": f"As of {timestamp}.",
+            "intro": f"By stage of control; As of {timestamp}",
         }
     }
 }
