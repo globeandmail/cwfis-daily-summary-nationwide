@@ -88,46 +88,46 @@ with open("data.csv", "w", newline="", encoding="utf-8") as f:
     writer.writerows(rows)
 
 print("data.csv updated")
-return
-API_TOKEN = os.environ["TOKEN"]
-URL_BASE = os.environ["URL_BASE"]
-CHART_ID = "AUj6h"
-HEADERS = {"Authorization": f"Bearer {API_TOKEN}"}
+# return
+# API_TOKEN = os.environ["TOKEN"]
+# URL_BASE = os.environ["URL_BASE"]
+# CHART_ID = "AUj6h"
+# HEADERS = {"Authorization": f"Bearer {API_TOKEN}"}
 
-# CSV data to upload
-csv_data = """date,value
-2026-07-20,100
-2026-07-21,125
-2026-07-22,150
-"""
+# # CSV data to upload
+# csv_data = """date,value
+# 2026-07-20,100
+# 2026-07-21,125
+# 2026-07-22,150
+# """
 
-# UPDATE DATA
-response = requests.put(
-    f"{URL_BASE}charts/{CHART_ID}/data",
-    headers=HEADERS,
-    data=csv_data.encode("utf-8")
-)
+# # UPDATE DATA
+# response = requests.put(
+#     f"{URL_BASE}charts/{CHART_ID}/data",
+#     headers=HEADERS,
+#     data=csv_data.encode("utf-8")
+# )
 
-response.raise_for_status()
+# response.raise_for_status()
 
-# PATCH CHART
-payload = {
-    "title": "COOL CHORT BRO"
-}
+# # PATCH CHART
+# payload = {
+#     "title": "COOL CHORT BRO"
+# }
 
-response = requests.patch(
-    f"{URL_BASE}charts/{CHART_ID}",
-    json=payload,
-    headers=HEADERS
-)
+# response = requests.patch(
+#     f"{URL_BASE}charts/{CHART_ID}",
+#     json=payload,
+#     headers=HEADERS
+# )
 
-response.raise_for_status()
+# response.raise_for_status()
 
-# PUBLISH CHART
-response = requests.post(
-    f"{URL_BASE}charts/{CHART_ID}/publish",
-    headers=HEADERS
-)
+# # PUBLISH CHART
+# response = requests.post(
+#     f"{URL_BASE}charts/{CHART_ID}/publish",
+#     headers=HEADERS
+# )
 
 response.raise_for_status()
 
