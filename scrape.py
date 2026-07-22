@@ -129,6 +129,6 @@ print("data.csv updated")
 #     headers=HEADERS
 # )
 
-response.raise_for_status()
+# response.raise_for_status()
 
-print("Chart updated and published.")
+# print("Chart updated and published.")
