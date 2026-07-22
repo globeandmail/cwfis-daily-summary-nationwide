@@ -47,6 +47,5 @@ jobs:
         env:
           URL_BASE: ${{secrets.URL_BASE}}
           TOKEN: ${{ secrets.TOKEN }}
-        # run: echo "The secret value is $URL_BASE"
-        run: python update_chart.py
-        
+        run: echo "The secret value is $URL_BASE"
+        # run: python update_chart.py
