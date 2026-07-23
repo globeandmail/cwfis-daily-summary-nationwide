@@ -29,20 +29,20 @@ jobs:
           URL_BASE: ${{secrets.URL_BASE}}
           TOKEN: ${{ secrets.TOKEN }}
         run: python scrape.py
-      - name: Commit Changes
-        run: |
-          git config user.name "github-actions"
-          git config user.email "github-actions@github.com"
+      # - name: Commit Changes
+      #   run: |
+      #     git config user.name "github-actions"
+      #     git config user.email "github-actions@github.com"
 
-          git add data.csv
+      #     git add data.csv
 
-          if git diff --cached --quiet; then
-            echo "No changes"
-            exit 0
-          fi
+      #     if git diff --cached --quiet; then
+      #       echo "No changes"
+      #       exit 0
+      #     fi
 
-          git commit -m "Update fire stats"
+      #     git commit -m "Update fire stats"
 
-          git pull --rebase origin main
+      #     git pull --rebase origin main
 
-          git push origin HEAD:main
+      #     git push origin HEAD:main
