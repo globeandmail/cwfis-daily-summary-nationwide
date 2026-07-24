@@ -27,10 +27,6 @@ url = (
     "&group_by_status=true"
     f"&date={url_date}"
 )
-
-def do_string(text):
-    return text.replace("_", " ").capitalize()
-
 agencies = { "AB":"Alta.", "BC":"B.C.", "MB":"Man.", "NB":"N.B.", "NL":"N.L.", "NS":"N.S.", "NT":"Nunavut.", "ON":"Ont.", "PC":"Parks Canada", "PE":"PEI", "QC":"Que.", "SK":"Sask.", "YT":"Yukon.", "total":"Total" }
 
 #FETCH DATA
@@ -38,6 +34,9 @@ agencies = { "AB":"Alta.", "BC":"B.C.", "MB":"Man.", "NB":"N.B.", "NL":"N.L.", "
 response = requests.get(url, timeout=30)
 response.raise_for_status()
 data = response.json()[0]
+
+print(type(data))
+print(data)
 
 # BUILD CSV
 
