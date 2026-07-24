@@ -33,7 +33,7 @@ agencies = { "AB":"Alta.", "BC":"B.C.", "MB":"Man.", "NB":"N.B.", "NL":"N.L.", "
 
 response = requests.get(url, timeout=30)
 response.raise_for_status()
-data = response.json()[0]
+data = response.json()
 
 print(type(data))
 print(data)
