@@ -85,7 +85,7 @@ response.raise_for_status()
 payload = {
     "metadata": {
         "describe": {
-            "intro": f"By stage of control; As of {timestamp}",
+            "intro": f"As of {timestamp}",
         }
     }
 }
