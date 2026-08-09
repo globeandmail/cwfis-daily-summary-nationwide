@@ -27,7 +27,7 @@ url = (
     "&group_by_status=true"
     f"&date={url_date}"
 )
-agencies = { "AB":"Alta.", "BC":"B.C.", "MB":"Man.", "NB":"N.B.", "NL":"N.L.", "NS":"N.S.", "NT":"Nunavut.", "ON":"Ont.", "PC":"Parks Canada", "PE":"PEI", "QC":"Que.", "SK":"Sask.", "YT":"Yukon.", "total":"Total" }
+agencies = { "AB":"Alta.", "BC":"B.C.", "MB":"Man.", "NB":"N.B.", "NL":"N.L.", "NS":"N.S.", "NT":"NWT.", "ON":"Ont.", "PC":"Parks Canada", "PE":"PEI", "QC":"Que.", "SK":"Sask.", "YT":"Yukon.", "total":"Total" }
 
 #FETCH DATA
 
